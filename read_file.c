@@ -1,4 +1,11 @@
+#define _GNU_SOURCE
 #include "monty.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#include <wctype.h>
+
 
 void open_file(char *file_name)
 {
@@ -13,7 +20,7 @@ void open_file(char *file_name)
 		err(2, file_name);
 	fd = fopen(file_name, "r");
 	if (fd == NULL)
-		err(2, file_name)
+		err(2, file_name);
 /*errors should be handled inside this function*/
 	read_file(fd);
 /*might need to check for errors on closing a file.*/
@@ -33,7 +40,7 @@ void read_file(FILE *fd)
 
 	if (fd == NULL)
 		err(2, "file_name");
-/*Getting each line in the file*/
+
 	for (line_n = 1; getline(&lineprt, &n, fd) != EOF; line_n++)
 	{
 		format = interpret_line(lineprt, line_n, format);
